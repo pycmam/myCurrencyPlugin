@@ -1,0 +1,17 @@
+myCurrency:
+  tableName: my_currency
+  actAs:
+    Timestampable: ~
+    I18n:
+      fields: [name, short, format]
+  columns:
+    name:                   { type: string(255), notnull: true }
+    short:                  { type: string(10), notnull: true }
+    format:                 { type: string(15), notnull: true, default: '%s' }
+    valute_id:              { type: string(10) }
+    abbreviation:           { type: string(10) }
+    course:                 { type: real }
+    is_default:             { type: boolean, notnull: true, default: false }
+    is_base:                { type: boolean, notnull: true, default: false }
+  options:
+    charset: utf8

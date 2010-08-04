@@ -1,0 +1,3 @@
+myCurrency:
+  url: /currency
+  params: { module: myCurrency, action: change }
