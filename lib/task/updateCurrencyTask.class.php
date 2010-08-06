@@ -25,7 +25,7 @@ EOF;
             stream_context_create(array('http' => array('method' => 'GET'))));
 
         if ($xml = simplexml_load_string($content)) {
-            $currency = Doctrine::getTable('Currency')->createQuery('c')
+            $currency = Doctrine::getTable('myCurrency')->createQuery('c')
                 ->where('c.valute_id IS NOT NULL')
                 ->execute();
 

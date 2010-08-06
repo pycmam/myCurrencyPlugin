@@ -1,3 +1,12 @@
-myCurrency:
-  url: /currency
-  params: { module: myCurrency, action: change }
+#myCurrencyAdmin:
+#  class: sfDoctrineRouteCollection
+#  options:
+#    model:                myCurrency
+#    module:               myCurrencyAdmin
+#    prefix_path:          /myCurrencyAdmin
+#    column:               id
+#    with_wildcard_routes: true
+#
+#myCurrency:
+#  url: /currency
+#  params: { module: myCurrency, action: change }

@@ -1,0 +1,33 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           myCurrency
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          myCurrencyAdmin
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        valute:             { label: ID валюты }
+        valute_id:          { label: ID валюты }
+        short:              { label: Сокращение }
+        format:             { label: Формат }
+        abbreviation:       { label: Аббревиатура }
+        course:             { label: Курс }
+        is_default:         { label: По-умолчанию }
+        is_base:            { label: Базовая }
+      list:
+        display:            [name, short, course, is_default, is_base, updated_at]
+        title:              Справочник валют
+      filter:  ~
+      form:    ~
+      edit:
+        title:              Редактирование валюты %%abbreviation%%
+      new:
+        title:              Добавление валюты
