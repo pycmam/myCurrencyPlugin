@@ -14,7 +14,7 @@ abstract class PluginmyCurrencyForm extends BasemyCurrencyForm
     {
         parent::setup();
 
-        $this->useFields(array('valute_id', 'abbreviation', 'is_default', 'is_base'));
+        $this->useFields(array('valute_id', 'is_default', 'is_base', 'abbreviation', 'course'));
 
         $this->embedI18n(array('ru', 'en'));
     }
