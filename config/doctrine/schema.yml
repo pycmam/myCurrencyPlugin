@@ -8,9 +8,9 @@ myCurrency:
     name:                   { type: string(255), notnull: true }
     short:                  { type: string(10), notnull: true }
     format:                 { type: string(15), notnull: true, default: '%s' }
-    valute_id:              { type: string(10) }
-    abbreviation:           { type: string(10) }
-    course:                 { type: real }
+    valute_id:              { type: string(10), notnull: true }
+    abbreviation:           { type: string(10), notnull: true }
+    course:                 { type: real, notnull: true }
     is_default:             { type: boolean, notnull: true, default: false }
     is_base:                { type: boolean, notnull: true, default: false }
   options:
