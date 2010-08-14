@@ -16,20 +16,65 @@ abstract class PluginmyCurrency extends BasemyCurrency
     protected static $_base = null;
 
     /**
+     * @var myCurrency валюта по-умолчанию
+     */
+    protected static $_default = null;
+
+    /**
      *
      * @return Currency
      */
-    protected static function getBase()
+    public static function getBaseCurrency()
     {
         if (is_null(self::$_base)) {
             self::$_base = myCurrencyTable::getInstance()->getBaseCurrency();
 
             if (! self::$_base || ! self::$_base->getCourse()) {
-                throw new sfException(__METHOD__ . ': base currency doesn\'t exists');
+                throw new InvalidArgumentException(__METHOD__ . ': base currency doesn\'t exists');
             }
         }
 
         return self::$_base;
+    }
+
+
+    /**
+     *
+     * @return Currency
+     */
+    public static function getDefaultCurrency()
+    {
+        if (is_null(self::$_default)) {
+            self::$_default = myCurrencyTable::getInstance()->getDefaultCurrency();
+
+            if (! self::$_default || ! self::$_default->getCourse()) {
+                throw new InvalidArgumentException(__METHOD__ . ': default currency doesn\'t exists');
+            }
+        }
+
+        return self::$_default;
+    }
+
+
+
+    /**
+     * Конвертировать из одной валюты в другую
+     *
+     * @param dsouble $value
+     * @param integer $sourceId
+     * @param integer $targetId
+     */
+    public static function convertFromTo($value, $sourceId, $targetId)
+    {
+        if ($sourceId == $targetId) {
+            return $value;
+        }
+
+        $source = myCurrencyTable::getInstance()->findOneById((int) $sourceId);
+        $target = myCurrencyTable::getInstance()->findOneById((int) $targetId);
+
+        return $source->getCourse() /
+            $target->getCourse() * $value;
     }
 
 
@@ -43,7 +88,7 @@ abstract class PluginmyCurrency extends BasemyCurrency
      */
     public static function convert($value, $currencyId = null)
     {
-        $base = self::getBase();
+        $base = self::getBaseCurrency();
 
         if (is_null($currencyId) || $currencyId == $base->getId()) {
             return $value;
@@ -71,7 +116,7 @@ abstract class PluginmyCurrency extends BasemyCurrency
              return self::convert($value, $currency->getId());
          }
 
-         throw new sfException(__METHOD__.': Invalid currency abbreviation');
+         throw new InvalidArgumentException(__METHOD__.': Invalid currency abbreviation');
      }
 
 
@@ -86,7 +131,7 @@ abstract class PluginmyCurrency extends BasemyCurrency
      */
     public static function convertToBase($value, $currencyId)
     {
-        $base = self::getBase();
+        $base = self::getBaseCurrency();
 
         if (is_null($currencyId) || $currencyId == $base->getId()) {
             return $value;
