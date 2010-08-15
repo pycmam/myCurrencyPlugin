@@ -52,8 +52,9 @@ function currency2currency($value, $sourceCurrencyId, $targetCurrencyId, $format
 }
 
 function currency_apply_format($value) {
+    use_helper('Number');
     $user = sfContext::getInstance()->getUser();
-    return sprintf($user->getAttribute('format', '%s грн.', 'currency'), format_number($value));
+    return sprintf($user->getAttribute('format', myCurrency::getDefaultCurrency()->getFormat(), 'currency'), format_number($value));
 }
 
 
