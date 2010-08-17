@@ -1,7 +1,7 @@
 myCurrency:
   tableName: my_currency
   actAs:
-    Timestampable: ~
+    #Timestampable: ~
     I18n:
       fields: [name, short, format]
   columns:
