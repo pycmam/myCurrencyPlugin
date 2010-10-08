@@ -15,7 +15,7 @@ jQuery(function(){
 <select id="my_currency" name="currency">
 <?php foreach ($items as $item): ?>
     <option value="<?php echo $item->getId() ?>"<?php echo $currentId == $item->getId() ? ' selected' : '' ?>>
-    <?php echo sprintf('%s (%s)', __($item->getName()), $item->getAbbreviation()) ?>
+    <?php echo $item ?>
     </option>
 <?php endforeach ?>
 </select>
