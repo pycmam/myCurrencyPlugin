@@ -13,6 +13,8 @@ function convert_currency($value, $format = true, $round = false) {
 
     if ($round) {
         $value = round($value);
+    } else {
+        $value = sprintf('%.2f', $value);
     }
 
     if ($format) {
