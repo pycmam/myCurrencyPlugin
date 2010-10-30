@@ -23,7 +23,7 @@ generator:
         is_default:         { label: По-умолчанию }
         is_base:            { label: Базовая }
       list:
-        display:            [name, short, course, is_default, is_base, updated_at]
+        display:            [name, short, course, is_default, is_base]
         title:              Справочник валют
       filter:  ~
       form:    ~
