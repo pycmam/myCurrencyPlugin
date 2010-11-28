@@ -1,5 +1,5 @@
 myCurrency:
-  tableName: my_currency
+  tableName: rlt_currency
   actAs:
     I18n:
       fields: [name, short, format]
