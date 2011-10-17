@@ -8,8 +8,9 @@
  *
  * @return double
  */
-function convert_currency($value, $format = true, $round = false) {
+function convert_currency($value, $format = true, $round = false, $discount = 0) {
     $value = myCurrency::convert($value, get_currency());
+    $value -= $value / 100 * $discount;
 
     if ($round) {
         $value = round($value);
